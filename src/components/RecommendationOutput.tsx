@@ -9,7 +9,7 @@ import AddToMenuModal from "./AddToMenuModal.tsx";
 export const DRAG_TYPE_RECIPE = "RECIPE";
 
 export default function RecommendationOutput() {
-    const { members, selectedMemberIds, items, dietaryRestrictions } = useAppContext();
+    const { members, selectedMemberIds, items, dietaryRestrictions, geminiKey } = useAppContext();
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -25,7 +25,7 @@ export default function RecommendationOutput() {
         try {
             // Use Gemini AI by default now since we have a hardcoded key
             const selectedMembers = members.filter(m => selectedMemberIds.includes(m.id));
-            const results = await fetchGeminiRecommendations(selectedMembers.length > 0 ? selectedMembers : members, items);
+            const results = await fetchGeminiRecommendations(geminiKey, selectedMembers.length > 0 ? selectedMembers : members, items);
             setRecommendations(results);
             setSource('ai');
         } catch (err: unknown) {

@@ -9,6 +9,9 @@ interface AppContextType {
     addMember: (member: FamilyMember) => void;
     removeMember: (id: string) => void;
     updateMember: (id: string, updated: Partial<FamilyMember>) => void;
+    // API
+    geminiKey: string;
+    setGeminiKey: (key: string) => void;
     // Member Targeting
     selectedMemberIds: string[];
     toggleMemberSelection: (id: string) => void;
@@ -42,6 +45,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
     const updateMember = (id: string, updated: Partial<FamilyMember>) =>
         setMembers((prev) => prev.map((m) => (m.id === id ? { ...m, ...updated } : m)));
+
+    // API
+    const [geminiKey, setGeminiKey] = useLocalStorage<string>("meal-planner-gemini-key", "");
 
     // Member Targeting
     const [selectedMemberIds, setSelectedMemberIds] = useLocalStorage<string[]>("meal-planner-selected-members", []);
@@ -97,6 +103,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         <AppContext.Provider
             value={{
                 members, addMember, removeMember, updateMember,
+                geminiKey, setGeminiKey,
                 selectedMemberIds, toggleMemberSelection, selectAllMembers, deselectAllMembers,
                 dietaryRestrictions, toggleDietaryRestriction,
                 items, addItem, removeItem, toggleSuggestion,
