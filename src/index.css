@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #fdfaf6;
+  /* warm off-white cream background */
+  --color-surface: #FFFFFF;
+  --color-primary: #f27a4e;
+  /* EatThisMuch brand orange */
+  --color-textMain: #2d3748;
+  /* deep warm gray for text */
+  --color-muted: #a0aec0;
+  /* subtle warm gray */
+  --color-accentTan: #f6ad55;
+  /* lighter orange for accents */
+  --color-accentSienna: #dd6b20;
+  /* darker orange for active states */
+  --color-success: #48bb78;
+  /* keep green for success/high matches but soften it */
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-textMain);
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid color-mix(in srgb, var(--color-muted) 25%, transparent);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 0.05);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 30px 0 rgb(0 0 0 / 0.08);
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition-property: opacity;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-tag {
+    background-color: var(--color-surface);
+    border: 1px solid color-mix(in srgb, var(--color-muted) 80%, transparent);
+    color: var(--color-textMain);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .btn-tag:hover {
+    background-color: #f9fafb;
+  }
+
+  /* Donut Chart Component using CSS conic-gradient */
+  .macro-donut {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    /* Yellow(Carbs), Teal(Fat), Purple(Protein) - EatThisMuch style */
+    background: conic-gradient(#ecc94b 0% var(--carbs, 33%),
+        #38b2ac var(--carbs, 33%) calc(var(--carbs, 33%) + var(--fat, 33%)),
+        #9f7aea calc(var(--carbs, 33%) + var(--fat, 33%)) 100%);
+  }
+
+  .macro-donut::after {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background-color: var(--color-surface);
+    border-radius: 50%;
+    position: absolute;
+  }
+}
+
+@layer utilities {
+  .macro-dot-carbs {
+    @apply w-2 h-2 rounded-full bg-[#ecc94b] inline-block;
+  }
+
+  .macro-dot-fat {
+    @apply w-2 h-2 rounded-full bg-[#38b2ac] inline-block;
+  }
+
+  .macro-dot-protein {
+    @apply w-2 h-2 rounded-full bg-[#9f7aea] inline-block;
+  }
+}
