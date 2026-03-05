@@ -12,6 +12,7 @@ IMPORTANT RULES:
 3. Do not invent ingredients out of thin air if you are claiming a 100% match.
 4. Output EXACTLY 10 recommendations covering: Breakfast, Lunch, Refreshment, and Dinner.
 5. "Refreshment" can be a simple snack (e.g. "Apple slices") depending on inventory.
+6. AT LEAST ONE recommendation MUST be a Tier 1 (100% match), using only the available pantry ingredients (unless the pantry is entirely empty).
 
 Return a valid JSON object with this schema:
 {
