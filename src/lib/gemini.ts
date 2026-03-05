@@ -37,7 +37,7 @@ Return a valid JSON object with this schema:
 }
 `;
 
-const GEMINI_API_KEY = "AIzaSyAhHEDFVILBkRdb9U8nfR0t8qC_LIsC-ZU";
+const GEMINI_API_KEY = "{string}";
 
 export async function fetchGeminiRecommendations(
     members: FamilyMember[],
